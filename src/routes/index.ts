@@ -4,7 +4,7 @@ import multer from '../libs/multer'
 
 const router = Router();
     
- router.route('/')
+router.route('/')
     .get(helloWorld)// la part lògica esta en un altre document en el controlador de cada cosa
 
 router.route('/photos')//Amb el mateix / podem crear amb el CRUD diferents accions
@@ -15,5 +15,8 @@ router.route('/photos/:id')
     .get(getPhoto)
     .delete(deletePhoto)
     .put(updatePhoto)
+
+router.route('/users')
+    
 
 export default router;

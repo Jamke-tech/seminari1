@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors'
 import morgan from 'morgan';
 import path from 'path'
 
@@ -13,8 +14,9 @@ app.set('port', process.env.PORT || 4000); // definim la variable PORT
 
 
 // Middlewares
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(express.json());
+app.use(cors());
 
 
 //Routes
