@@ -10,14 +10,18 @@ export function helloWorld( req: Request, res:Response): Response {
 export async function createPhoto(req: Request, res: Response): Promise<Response> {
 
     const{ title, description} = req.body;
+
     const newPhoto ={
         title: title,
         description: description,
         imagePath: req.file.path //guardem el path de la foto
+
     };
+
     const photo = new Photo(newPhoto);// creem l'objecte de MongoDB
     
     await photo.save()//guardem la foto amb mongoose
+
     return res.json({
         message : 'Photo correctly uploaded'
     })
@@ -37,6 +41,7 @@ export async function getPhoto (req:Request, res:Response): Promise<Response>{
 export async function deletePhoto(req:Request, res:Response): Promise<Response>{
     const {id} =req.params;
     const photo = await Photo.findByIdAndRemove(id);//borramos la info de la BBDD
+
     if(photo){
         await fs.unlink(path.resolve(photo.imagePath))//eliminamos la fotografia del servidor
     }
